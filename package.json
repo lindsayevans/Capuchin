@@ -1,0 +1,37 @@
+{
+  "name": "capuchin",
+  "version": "0.0.1",
+  "description": "Lightweight, fluent DOM manipulation library Edit",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "jest"
+  },
+  "pre-commit": [
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lindsayevans/capuchin.git"
+  },
+  "keywords": [
+    "typescript",
+    "dom",
+    "html",
+    "fluent"
+  ],
+  "author": "Lindsay Evans <linz@linz.id.au>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lindsayevans/capuchin/issues"
+  },
+  "homepage": "https://github.com/lindsayevans/capuchin#readme",
+  "devDependencies": {
+    "@types/jest": "^20.0.2",
+    "npm-run-all": "^4.0.2",
+    "pre-commit": "^1.2.2",
+    "ts-jest": "^20.0.6",
+    "ts-node": "^3.2.0",
+    "tslint": "^5.5.0",
+    "typedoc": "^0.7.1",
+    "typescript": "^2.4.1"
+  }
+}
