@@ -1,14 +1,23 @@
 {
 	"compilerOptions": {
-		"module": "es2015",
-		"target": "ES5",
+		"module": "commonjs",
+		"target": "es6",
 		"sourceMap": true,
+        "declaration": true,
 		"noImplicitAny": false,
 		"removeComments": true,
 		"preserveConstEnums": true,
 		"experimentalDecorators": true,
 		"skipLibCheck": true,
 		"moduleResolution": "node",
-		"lib": ["es2015", "dom"]
-	}
+		"lib": ["es2015", "dom"],
+        "outDir": "lib"
+	},
+    "include": [
+        "src/**/*"
+    ],
+    "exclude": [
+        "node_modules",
+        "test/**/*.ts"
+    ]
 }

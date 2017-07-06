@@ -1,18 +1,23 @@
 import { Capuchin } from './capuchin';
-import { CapuchinNode } from './capuchin-node';
 
 /**
- * An array of CapuchinNodes
+ * An array of HTMLElements, with convenience methods
  */
-export class CapuchinCollection<T extends Array<CapuchinNode>> extends Array<CapuchinNode> {
+export class CapuchinCollection<T extends Array<HTMLElement | Document>> extends Array<HTMLElement | Document> {
 
+    /**
+     * The default context to search in
+     */
+    public static defaultContext: HTMLElement | Document = document;
+
+    // Keep local copies of Array methods
     private static __foreach = Array.prototype.forEach;
 
-    constructor(public selector: string, public context: HTMLElement | Document = CapuchinNode.context) {
+    constructor(public selector: string, public context: HTMLElement | Document = CapuchinCollection.defaultContext) {
         super();
 
-        if (CapuchinNode.context === undefined || CapuchinNode.context === null) {
-            console.warn('Capuchin: Could not determine default context, please set CapuchinNode.context manually before usage');
+        if (CapuchinCollection.defaultContext === undefined || CapuchinCollection.defaultContext === null) {
+            console.warn('Capuchin: Could not determine default context, please set CapuchinCollection.context manually before usage');
         }
     }
 

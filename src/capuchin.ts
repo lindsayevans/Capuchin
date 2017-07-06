@@ -1,15 +1,14 @@
-import { CapuchinNode } from './capuchin-node';
 import { CapuchinCollection } from './capuchin-collection';
 
 /**
  * Retrieves all HTML elements matching `selector`
  */
-export function Capuchin(selector: string, context: HTMLElement | Document = CapuchinNode.context) {
+export function Capuchin(selector: string, context: HTMLElement | Document = CapuchinCollection.defaultContext) {
     let collection = new CapuchinCollection(selector, context);
 
     let elements = Array.from(context.querySelectorAll(selector)) as Array<HTMLElement | Document>;
     elements.forEach(element => {
-        collection.push(new CapuchinNode(element, selector, context));
+        collection.push(element);
     });
 
     return collection;
