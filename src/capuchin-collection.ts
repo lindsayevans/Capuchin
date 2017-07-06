@@ -119,4 +119,63 @@ export class CapuchinCollection<T extends Array<HTMLElement | Document>> extends
         return this;
     }
 
+    /**
+     * Adds or retrieves data to/from all elements in collection
+     */
+    // TODO: Implement complex data - JSON.stringify/parse ?
+    public data(name: string, data?: any)
+        : CapuchinCollection<T> | Array<any> {
+
+        let adding = data !== undefined;
+        let retrievedData = [];
+
+        this.forEach(element => {
+            // Need to use setAttribute/getAttribute here because JSDOM doesn't like dataset :|
+            if (adding) {
+                element.setAttribute(`data-${name}`, data);
+            } else {
+                retrievedData.push(element.getAttribute(`data-${name}`));
+            }
+
+        });
+
+        if (adding) {
+            return this;
+        } else {
+            return retrievedData;
+        }
+
+    }
+
+    /**
+     * Removes data to/from all elements in collection
+     */
+    public removeData(name: string)
+        : CapuchinCollection<T> {
+
+        this.forEach(element => {
+            // Need to use removeAttribute here because JSDOM doesn't like dataset :|
+            element.removeAttribute(`data-${name}`);
+        });
+
+        return this;
+
+    }
+
+    /**
+     * Checks if any element in the collection has the data `name`
+     */
+    public hasData(name: string): boolean {
+
+        let hasData = false;
+
+        this.forEach(element => {
+            if (element.getAttribute(`data-${name}`) !== null) {
+                hasData = true;
+            }
+        });
+
+        return hasData;
+    }
+
 }

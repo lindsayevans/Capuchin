@@ -113,4 +113,61 @@ describe('Capuchin should...', () => {
 
   });
 
+  test('check if a collection has an element with data', () => {
+
+    document.querySelector('.foo').setAttribute('data-abc', '123');
+
+    expect($('.foo').hasData('abc')).toBeTruthy();
+
+  });
+
+  test('check if a collection doesn\'t have an element with data', () => {
+
+    expect($('.foo').hasData('nope')).toBeFalsy();
+
+  });
+
+  test('add string data to elements', () => {
+
+    $('.foo').data('abc', '123');
+
+    expect(document.querySelector('.foo').getAttribute('data-abc')).toEqual('123');
+
+  });
+
+  test('get string data from elements', () => {
+
+    document.querySelector('.foo').setAttribute('data-abc', '123');
+
+    expect($('.foo').data('abc')[0]).toEqual('123');
+
+  });
+
+  // TODO: Implement complex data
+  test.skip('add complex data to elements', () => {
+
+    $('.foo').data('abc', { xyz: 123 });
+
+    expect(document.querySelector('.foo').getAttribute('data-abc')).toEqual({ xyz: 123 });
+
+  });
+
+  test.skip('get complex data from elements', () => {
+
+    $('.foo').data('abc');
+
+    expect(document.querySelector('.foo').getAttribute('data-abc')).toEqual({ xyz: 123 });
+
+  });
+
+  test('remove string data from elements', () => {
+
+    document.querySelector('.foo').setAttribute('data-abc', '123');
+
+    $('.foo').removeData('abc');
+
+    expect(document.querySelector('.foo').getAttribute('data-abc')).toEqual(null);
+
+  });
+
 });
