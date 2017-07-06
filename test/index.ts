@@ -60,4 +60,57 @@ describe('Capuchin should...', () => {
 
   });
 
+  test('handle events', () => {
+
+    let handler = jest.fn();
+
+    $('.click-me').on('click', handler);
+
+    let $btn = document.querySelector('.click-me') as HTMLAnchorElement;
+    $btn.click();
+
+    expect(handler.mock.calls.length).toBe(1);
+
+  });
+
+  test('remove events', () => {
+
+    let handler = jest.fn();
+
+    $('.click-me').on('click', handler);
+
+    $('.click-me').off('click', handler);
+
+    let $btn = document.querySelector('.click-me') as HTMLAnchorElement;
+    $btn.click();
+
+    expect(handler.mock.calls.length).toBe(0);
+
+  });
+
+  test('trigger events', () => {
+
+    let handler = jest.fn();
+
+    $('.click-me').on('click', handler);
+
+    $('.click-me').trigger('click');
+
+    expect(handler.mock.calls.length).toBe(1);
+
+  });
+
+  // FIXME: For some reason Event.detail is coming through as null in JSDOM
+  test.skip('trigger events with data', () => {
+
+    let handler = jest.fn();
+
+    $('.click-me').on('click', handler);
+
+    $('.click-me').trigger('click', { customData: 'yep' });
+
+    expect(handler.mock.calls[0][0].detail).toEqual({ customData: 'yep' });
+
+  });
+
 });

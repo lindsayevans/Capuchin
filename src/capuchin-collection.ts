@@ -76,4 +76,47 @@ export class CapuchinCollection<T extends Array<HTMLElement | Document>> extends
         return this;
     }
 
+    /**
+     * Listens for event `type` on all elements in collection
+     */
+    public on<K extends keyof DocumentEventMap>(type: K, listener: (this: HTMLDocument, ev: DocumentEventMap[K]) => any, useCapture?: boolean)
+        : CapuchinCollection<T> {
+
+        this.forEach(element => {
+            element.addEventListener(type, listener, useCapture);
+        });
+
+        return this;
+    }
+
+    /**
+     * Listens for event `type` on all elements in collection
+     */
+    public off<K extends keyof DocumentEventMap>(type: K, listener: (this: HTMLDocument, ev: DocumentEventMap[K]) => any, useCapture?: boolean)
+        : CapuchinCollection<T> {
+
+        this.forEach(element => {
+            element.removeEventListener(type, listener, useCapture);
+        });
+
+        return this;
+    }
+
+    /**
+     * Triggers the event `type` on all elements in collection
+     * @param data - Optional data to pass to the event handler
+     */
+    public trigger<K extends keyof DocumentEventMap>(type: K, data?: any)
+        : CapuchinCollection<T> {
+
+        // FIXME: For some reason Event.detail is coming through as null in JSDOM
+        let event = new CustomEvent(type, data);
+
+        this.forEach(element => {
+            element.dispatchEvent(event);
+        });
+
+        return this;
+    }
+
 }
