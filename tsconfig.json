@@ -1,0 +1,14 @@
+{
+	"compilerOptions": {
+		"module": "es2015",
+		"target": "ES5",
+		"sourceMap": true,
+		"noImplicitAny": false,
+		"removeComments": true,
+		"preserveConstEnums": true,
+		"experimentalDecorators": true,
+		"skipLibCheck": true,
+		"moduleResolution": "node",
+		"lib": ["es2015", "dom"]
+	}
+}
