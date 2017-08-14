@@ -178,4 +178,20 @@ export class CapuchinCollection<T extends Array<HTMLElement | Document>> extends
         return hasData;
     }
 
+    /**
+     * Retrieves the first parent element, optionally matching `selector`
+     */
+    public parent(selector?: string): HTMLElement {
+
+        let $parent = this[0].parentElement;
+
+        // Check for selector, of traverse up the DOM tree
+        if (selector !== undefined) {
+            $parent = (this[0] as Element).closest(selector) as HTMLElement;
+        }
+
+        return $parent;
+
+    }
+
 }

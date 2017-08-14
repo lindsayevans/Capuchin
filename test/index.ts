@@ -170,4 +170,16 @@ describe('Capuchin should...', () => {
 
   });
 
+  test('get parent element', () => {
+
+    expect($('#p3').parent().getAttribute('id')).toEqual('p2');
+
+  });
+
+  test.skip('get parent element with selector', () => {
+
+    expect($('#p3').parent('.p1').getAttribute('id')).toEqual('p1');
+
+  });
+
 });
